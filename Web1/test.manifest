@@ -1,0 +1,8 @@
+CACHE MANIFEST
+#version 1.3  //版本号很重要，每次修改这里的版本号，就会触发缓存资源的更新
+ 
+CACHE:  //需要缓存的资源
+Build/UnityLoader.js
+Build/Web.data.unityweb
+Build/Web.wasm.code.unityweb
+TemplateData/Js/title.js

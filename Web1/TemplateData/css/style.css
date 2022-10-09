@@ -1,0 +1,342 @@
+﻿body{
+	margin:0px;
+	padding:0px;
+	position: absolute; 
+	height:100%;
+	width:100%;
+	background-size:cover;
+	font-style: normal;
+	font-family:"Myriad Pro", Myriad,"Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color:#f0f0f1;
+}
+
+.webgl-content,#errorBrowserBlock,#AudioBlock,#VideoBlock{
+	padding:0px;
+	position:absolute;
+	height:100%;
+	width:100%;
+	border:none;
+}
+#AudioBlock{
+    background-color:rgba(0,0,0,0);
+	background-size:cover;
+	text-align:center;
+}
+#ShareBlock{
+    background-color:rgba(1,1,1,0.8);
+	background-size:cover;
+	text-align:center;
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+#NShareBlock{
+    background-color:rgba(1,1,1,0.8);
+	background-size:cover;
+	text-align:center;
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+#VideoBlock{
+    background-color:rgba(1,1,1,0.8);
+	background-size:cover;
+	text-align:center;
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+
+.SharePic{
+    float:right;
+	height:auto;
+	width:auto;
+	max-height:50%;
+	max-width:50%;
+}
+.ShareClose{
+	 height:auto;
+	 width:auto;
+	 max-height:30%;
+	 max-width:30%;
+     position: fixed;
+     top: 70%;
+     left: 50%;
+     -webkit-transform: translateX(-50%) translateY(-50%);
+     -moz-transform: translateX(-50%) translateY(-50%);
+     -ms-transform: translateX(-50%) translateY(-50%);
+     transform: translateX(-50%) translateY(-50%);
+}
+#NSharePanel{
+   position:fixed;
+   left:50%;
+   top:50%;
+   height:50vmin;
+   width:50vmin;
+   background-size:100% 100%;
+   text-align:center;
+   -webkit-transform: translateX(-50%) translateY(-50%);
+   -moz-transform: translateX(-50%) translateY(-50%);
+   -ms-transform: translateX(-50%) translateY(-50%);
+   transform: translateX(-50%) translateY(-50%);
+}
+#NSharePanel img{
+    position:absolute;
+	content: url("../img/sharepanel.png");
+	height:100%;
+	width:100%;
+	border-radius:10px;
+	left:0%;
+}
+#NShareTip
+{ 
+   width:100%;
+   font-size:35px;
+   position:absolute;
+   top:5%;
+   color:black;
+}
+#NShareText{
+   background-color:rgba(240,240,240,0.8);
+   font-size:20px;
+   position:absolute;
+   top:20%;
+   left:10%;
+   width:80%;
+   height:50%;
+   color:rgba(107,107,107,1);
+   border-radius:10px;
+   line-width:100%;
+   line-height:150%;
+   word-wrap:break-word;
+}
+#NShareBtn{
+   width:100%;
+   height:20%;
+   font-size:35px;
+   position:absolute;
+   vertical-align:middle;
+   bottom:0%;
+   color:white;
+   background-color:rgba(228,91,98,1);
+   border-bottom-right-radius:10px;
+   border-bottom-left-radius:10px;
+}
+#NShareBtnText{
+   top:15%;
+   width:100%;
+   font-size:35px;
+   position:absolute;
+   vertical-align:middle;
+}
+#NShareClose{
+   position:absolute;
+   left:40%;
+   bottom:-25%;
+   width:15%;
+   height:15%;
+   content: url("../img/close.png");
+}
+#gameContainer,canvas{
+	position:absolute;
+	height:100%;
+	width:100%;
+	background-color:#f0f0f1;
+}
+.videopanel{
+     height:70%;
+	 width:70%;
+     position: fixed;
+	 top: 50%;
+     left: 50%;
+     -webkit-transform: translateX(-50%) translateY(-50%);
+     -moz-transform: translateX(-50%) translateY(-50%);
+     -ms-transform: translateX(-50%) translateY(-50%);
+     transform: translateX(-50%) translateY(-50%);
+}
+.videoclose{
+     height:auto;
+	 width:auto;
+	 max-height:5%;
+	 max-width:5%;
+     position: fixed;
+     top: 5%;
+     left: 95%;
+}
+
+#loadingBlock,#errorBrowserBlock{
+	position:absolute;
+	height:100%;
+	width:100%;
+	background:linear-gradient(to right, rgba(50,50,50,0.8) 0%, rgba(255,255,255,0) 20%), url("../img/timg.jpg");
+	background-size:cover;
+	background-position:center center;
+}
+#center{
+    position:fixed;
+	content: url("../img/center.png");
+	height:30%;
+	width:auto;
+	 top: 40%;
+     left: 50%;
+     -webkit-transform: translateX(-50%) translateY(-50%);
+     -moz-transform: translateX(-50%) translateY(-50%);
+     -ms-transform: translateX(-50%) translateY(-50%);
+     transform: translateX(-50%) translateY(-50%);
+}
+#yun1{
+    position:fixed;
+	content: url("../img/yun.png");
+	height:auto;
+	width:auto;
+	top:45%;
+	left:15%;
+}
+#yun2{
+    position:fixed;
+	content: url("../img/yun.png");
+	height:auto;
+	width:auto;
+	top:15%;
+	left:30%;
+}
+#hua{
+    position:fixed;
+	content: url("../img/hua.png");
+	max-width:30%;
+	height:auto;
+	bottom:0%;
+	right:0%;
+}
+#showpic{
+    position:absolute;
+	height:100%;
+	width:25%;
+	left:50%;
+	background: url("../img/showpic.png");
+	background-size:cover;
+	background-position:center center;
+}
+#t1{
+   position:fixed;
+   color:white;
+   left:10%;
+   top:60%;
+   width:35%;
+   background-size:100% 100%;
+   font-size:25px;
+}
+#t1text{
+   margin:0 auto;
+   height:100%;
+   vertical-align: middle;
+   word-wrap: break-word;/*英文的时候需要加上这句，自动换行*/ 
+   display:flex;
+   -webkit-display:flex;
+   flex-direction:column; 
+   justify-content:center;
+   writing-mode:horizontal-tb;//默认：水平方向，从上到下 
+   writing-mode:vertical-rl;  //垂直方向，从右向左
+   writing-mode:vertical-lr;  //垂直方向，从左向右  
+}
+#t2{
+   position:fixed;
+   color:white;
+   left:10%;
+   top:65%;
+   width:35%;
+   background-size:100% 100%;
+   font-size:25px;
+}
+#t2text{
+   margin:0 auto;
+   height:100%;
+   vertical-align: middle;
+   word-wrap: break-word;/*英文的时候需要加上这句，自动换行*/ 
+   display:flex;
+   -webkit-display:flex;
+   flex-direction:column; 
+   justify-content:center;
+   writing-mode:horizontal-tb;//默认：水平方向，从上到下 
+   writing-mode:vertical-rl;  //垂直方向，从右向左
+   writing-mode:vertical-lr;  //垂直方向，从左向右  
+}
+#progressBar{
+    position:fixed;
+	top:80%;
+    height:180px;
+	width:40%;
+	left:5%;
+	text-align:center;
+}
+.loadingtip{
+    font-size:15px; 
+	color:white; 
+}
+.centered{
+    position:absolute;
+    top:20%;
+	height:10%;
+	width:100%;
+}
+#emptyBar{
+    position:absolute;
+	content: url("../img/progressEmpty.png") ;
+	height:100%;
+	width:100%;
+	left:0%;
+}
+
+#fullBar{
+    position:absolute;
+	content: url("../img/progressFull.png");
+	width: 100%; 
+	height: 100%; 
+	float: left; 
+	left:0%;
+}
+#fullIndex{
+    position:absolute;
+	content: url("../img/fullindex.png");
+	width:10%; 
+	height:150%;
+	left:0%;
+	top:-20%;
+}
+#warningBrowserBlock,#warningMobileBlock,#errorContent{
+	height:15%;
+	width:50%;
+	margin:auto;
+	text-align: center;
+}
+#TipError
+{
+	width:100%;
+	text-align: center;
+	white-space: nowrap;
+	position:absolute;position:fixed; z-index:1000; bottom:0px; 
+}
+
+
+
+#warningBrowserBlock,#warningMobileBlock,#errorContent{
+	margin-top:15vh;
+	color:#666666;
+	font-size:2.3vh;
+}
+
+.browserIcons{
+	display: inline-flex;
+	margin-top:2vh;
+}
+
+.browserIcons a{
+	width:150px;
+}
+
+#errorContent{
+	font-size:3vh;
+	margin-top:5vh;
+}
+
+

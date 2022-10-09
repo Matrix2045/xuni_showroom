@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="user-scalable=no,text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=0.5, user-scalable=0" name="viewport" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>画馆</title>
+    <link rel="shortcut icon" href="
+https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/TemplateData/img/favicon.ico?v="+new Date().getTime()>
+    <link rel="stylesheet" href="
+https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/TemplateData/css/style.css?v="+new Date().getTime()>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js?v="+new Date().getTime()></script>
+	<script>
+	    var ossurl='https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/';
+		var mainurl='http://xuni.pro4.liuniukeji.net';
+        var gameInstance;
+        var ver;
+		//获取域名中的参数
+		function GetQueryString(name)
+		{
+		     var reg = new RegExp("(^|/)"+ name +"=([^/]*)(/|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return "";
+		}
+		//检查url，是否符合微信url组装
+		function CheckUrl()
+		{
+		 document.getElementById("progressBar").style.display = "none";
+		   if(navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)){
+		         document.getElementById("RegistBlock").style.height = document.body.scrollHeight+"px";
+                 document.getElementById("RegistBlock").style.width  = document.body.scrollWidth+"px";
+				 document.getElementById("webgg").style.height = document.body.scrollHeight+"px";
+                 document.getElementById("webgg").style.width  = document.body.scrollWidth+"px";
+           } 
+		   var oldurl=unescape(location.href.split('#')); 
+		   if(oldurl.indexOf('&')!==-1)
+		   {
+		     var newurl=oldurl.replace('&','/');
+	             window.history.pushState(null,null,newurl);
+	             location.reload();
+		   }else
+		   {
+		      //CheckLogin();
+			  scaleNormal();
+			  SetHtml();
+		   }
+		}
+		//检测登录,是否含有token
+		function CheckLogin()
+		{
+		   var ua = navigator.userAgent.toLowerCase();  
+		   if(ua.match(/MicroMessenger/i)=="micromessenger") 
+		   {  
+		     var token=GetQueryString("token");
+			 if(token=="")
+			 {
+			    Login("?hall_id="+GetQueryString("hall_id")+"/pos="+GetQueryString("pos"));
+			 }
+			 else
+			 {
+			    scaleNormal();
+			    SetHtml();
+			 }
+           }
+		   else
+		   {
+		       scaleNormal();
+			   SetHtml();
+		   }
+		}
+		//处理缩放
+		function scaleNormal()
+		{
+		    var lastTouchEnd = 0;
+            document.addEventListener('touchstart', function(event) 
+			{
+                if (event.touches.length > 1) 
+				{
+                    event.preventDefault();
+                }
+             });
+            document.addEventListener('touchend', function(event) 
+			{
+                var now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) 
+				{
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+            document.addEventListener('gesturestart', function(event) 
+			{
+                event.preventDefault();
+            });
+            document.addEventListener('dblclick', function (event) {
+                     event.preventDefault();
+	        })
+		}
+	    //加载加载页信息
+        function SetHtml(){
+		    var hallid=GetQueryString("hall_id");
+			var httpRequest = new XMLHttpRequest();
+            httpRequest.open('POST', mainurl+'/api/Index/getHallInfo', true);
+            httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            if(hallid==""){
+			     httpRequest.send('hall_id=1&type=1');
+			}else{
+			     httpRequest.send('hall_id='+hallid+'&type=1');
+			}
+            httpRequest.onreadystatechange = function () 
+			{
+               if (httpRequest.readyState == 4) 
+			   {
+			      if(httpRequest.status == 200)
+				  {				     
+                     var json = httpRequest.responseText;
+				     var obj = JSON.parse(json);
+					 if(obj.code==0)
+					 {
+					    showError("展馆已关闭！")
+					    return;
+					 }
+				     document.title=obj.data.name;
+				     var Sence=obj.data.hall_type;
+				     //document.getElementById("pp").src=obj.data.image+"&x-oss-process=image/resize,m_lfit,h_1000,w_1000";
+					 var t1=obj.data.curator;
+				     document.getElementById("t1").innerHTML="主 办 人 ："+t1;
+					 var t2=obj.data.organizer;
+				     document.getElementById("t2").innerHTML="主办单位："+t2;
+				     document.getElementById("music").src=obj.data.bg_music;
+                     if(hasWasm())
+			         {
+				       ver="Wasm";
+                     }else
+                     {
+                       ver="Asm";
+                     }
+                     loadScript(ossurl+'Bulid/'+ver+'/Sence'+Sence+'/UnityLoader.js?v='+new Date().getTime(),function()
+					 {
+                        LoadUnityLoader(Sence);
+                     });
+				  }else{
+				    alert("Network error");
+				  }
+               }
+            };
+		}
+		//加载Js文件
+	    function loadScript(src, callback) 
+		{            
+            var script = document.createElement('script'),
+            head = document.getElementsByTagName('head')[0];
+            script.type = 'text/javascript';
+            script.charset = 'UTF-8';
+            script.src = src;
+            if (script.addEventListener) 
+			{
+                 script.addEventListener('load', function () {
+                 callback();
+                 }, false);
+            } else if (script.attachEvent) 
+			{
+                script.attachEvent('onreadystatechange', function () 
+				{
+                   var target = window.event.srcElement;
+                   if (target.readyState == 'loaded') 
+				   {
+                      callback();
+                   }
+                });
+            }
+            head.appendChild(script);
+        }
+		//判断是否有Wasm
+        function hasWasm() {
+		   return "object" == typeof WebAssembly && "function" == typeof WebAssembly.validate && "function" == typeof WebAssembly.compile;
+	    }
+		        //错误提示
+        function showError(str){
+		   document.getElementById("loadingBlock").style.display = "none";
+		   document.getElementById("webgg").style.display = "none";
+           document.getElementById("errorBrowserBlock").style.display = "inherit";
+           document.getElementById("errorBrowserText").innerHTML=str;
+        }
+        //判断IOS版本
+        function GetIOSVersion()
+        {
+           var str= navigator.userAgent.toLowerCase(); 
+             if(str){
+                var ver=str.match(/os (\S*) like/);
+             if(ver){
+			      ver1="_"+ver[1];
+				  s=ver1.split("_");
+				  if(s[1]<13&&s[2]<3){
+                     return true;
+                  }
+			 }
+	       }
+            return false;
+        }
+		//判断浏览器版本
+		 function GetBrowerVersion()
+        {
+           var str= navigator.userAgent; 
+             if(str){
+                 if(str.indexOf("UBrowser")!=-1||str.indexOf("UCBrowser")!=-1||str.indexOf("Quark")!=-1)
+                 {
+				    return true;
+				 }
+			 }
+           return false;
+        }
+		var isPlay=false;
+		//隐藏判断
+		function BackCheck()
+		{
+		// 监听页面是否是激活状态
+            var hiddenProperty = 'hidden' in document ? 'hidden' :    
+                     'webkitHidden' in document ? 'webkitHidden' :    
+                           'mozHidden' in document ? 'mozHidden' :    
+                         null;
+            var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+            var onVisibilityChange = function(){
+                  if (!document[hiddenProperty]) { 
+				       if(isPlay)
+					   {
+                        document.getElementById("music").play();
+					   }
+                  }else{
+                       document.getElementById("music").pause();
+                  }
+		    }
+			document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+		}
+		//加载UnityLoader
+		function LoadUnityLoader(sence)
+		{
+		    gameInstance = UnityLoader.instantiate("gameContainer", ossurl+'Bulid/'+ver+'/Sence'+sence+'/Web.json?v='+new Date().getTime(), {
+			onProgress: UnityProgress,
+			compatibilityCheck:CheckCompatibility,
+			   Module: {
+				   //TOTAL_MEMORY: 268435456,
+				   onRuntimeInitialized:RuntimeInitialized,
+			   },		
+		    });
+		}
+	    function CheckCompatibility(gameInstance, onsuccess, onerror)
+		{
+	        if(GetIOSVersion()){
+			   showError("您的设备系统过低，不支持UnityWebgl，请更换设备或更新系统！")
+			}else if (!UnityLoader.SystemInfo.hasWebGL) {
+			   showError("您的浏览器不支持Webgl，请更换浏览器后再尝试打开网页！")
+			} else {
+				onsuccess();
+			}
+		}
+		function RuntimeInitialized(){
+		     BackCheck();	
+			 //document.getElementById("pp").src=null;
+			 document.getElementById("AudioBlock").style.display = "inherit";
+			 document.getElementById("AudioBlock").addEventListener("touchstart", touchHandler, false);
+		}
+		function UnityProgress(gameInstance, progress) {
+			if (!gameInstance.Module)
+			return;
+			 document.getElementById("progressBar").style.display = "inherit";
+			document.getElementById("loadingBlock").style.display = "inherit";	 	
+			document.getElementById("fullBar").style.width = progress*100+"%";
+			document.getElementById("emptyBar").style.width = "100%";
+			document.getElementById("fullIndex").style.left = (progress*100)-5+"%";
+			if (progress == 1)
+			{
+				setTimeout(function(){ 
+				   document.getElementById("loadingBlock").style.display = "none";
+				}, 500);
+			}	
+		}
+		//音乐加载
+		function MusicLoad(str)
+		{
+		   document.getElementById("music").src=str;
+		}
+		//音乐播放
+		function MusicPlay()
+		{
+		   document.getElementById("music").play();
+		   isPlay=true;
+		}
+		//音乐暂停
+		function MusicPause()
+		{
+		   document.getElementById("music").pause();
+		   isPlay=false;
+		}
+		//图片音乐播放
+		function PicAudioOpen(src)
+		{
+		   document.getElementById("Picmusic").src=src;
+		   document.getElementById("Picmusic").play();
+		   document.getElementById("music").pause();
+		}
+		//图片音乐关闭
+		function PicAudioClose()
+		{
+		   document.getElementById("Picmusic").pause();
+		   document.getElementById("Picmusic").load();
+		   if(isPlay)
+		   {
+		      document.getElementById("music").play();
+		   }
+		}
+		//图片视频
+		function PicVedio(src)
+		{
+		   document.getElementById("Picmusic").pause();
+		   document.getElementById("Picmusic").load();
+		   document.getElementById("music").pause();
+		   document.getElementById("VideoBlock").style.display = "inherit";	
+		   document.getElementById("PicVideo").pause();
+		   document.getElementById("PicVideo").load();
+		   document.getElementById("PicVideo").src=src;
+		   document.getElementById("PicVideo").play();
+		}
+		//图片视频关闭
+		function PicVedioClose()
+		{
+		   document.getElementById("VideoBlock").style.display = "none";	
+		   document.getElementById("PicVideo").pause();
+		   document.getElementById("PicVideo").load();
+		   if(isPlay)
+		   {
+		      document.getElementById("music").play();
+		   }
+		}
+		function touchHandler()
+		{
+		     document.getElementById("AudioBlock").style.display = "none";
+			 MusicPlay();
+		}
+        var Loginurl=mainurl+"/third/connect/wechat.html?url=";
+		function Login(str) { 	
+		   var ua = navigator.userAgent.toLowerCase();  
+           if(ua.match(/MicroMessenger/i)!="micromessenger") 
+		   {  
+		     alert("请在微信客户端打开！");
+             return true;  
+           }
+           window.location.href=Loginurl+location.href.split('?')[0]+str;
+		}
+		function gettoken()
+		{
+		    gameInstance.SendMessage("Fengmian", "Settoken",GetQueryString("token"));
+		}
+		function gethallid()
+		{
+		    gameInstance.SendMessage("Fengmian","Sethallid",GetQueryString("hall_id"));
+		}
+		function getsence()
+		{
+		    gameInstance.SendMessage("Fengmian", "Setsence",GetQueryString("sence"));
+		}
+		function getpos()
+		{
+		    gameInstance.SendMessage("Fengmian", "Setpos",GetQueryString("pos"));
+		}
+		function WXGood(ST)
+		{
+		    alert(ST);
+		}
+		function WXShare(ST,SL,SI,SD)
+		{
+		   var ua = navigator.userAgent.toLowerCase();  
+           if(ua.match(/MicroMessenger/i)!="micromessenger") {  
+		     document.getElementById("NShareBlock").style.display = "inherit";
+			 document.getElementById("NShareText").innerHTML=unescape(location.href).split('?')[0]+SL;
+			 var text = document.getElementById("NShareText").innerHTML;
+			 document.getElementById("NShareinput").style.display="inherit";
+             var input = document.getElementById("NShareinput");
+             input.value = text; // 修改文本框的内容
+             input.select(); // 选中文本
+             document.execCommand("copy"); // 执行浏览器复制命令
+			 document.getElementById("NShareinput").style.display="none";
+             return true;  
+            }
+		    //定义初始化参数
+            var appId = '';
+            var timestamp = '';
+            var nonceStr = '';
+            var signature = '';
+            var url = '';
+            var sharetitle = ST;
+            var shareurl =unescape(location.href).split('?')[0]+SL;
+            var imgUrl = SI;
+			var sharedesc=SD;
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.open('POST',mainurl+ '/third/share', true);
+            httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");         
+			httpRequest.send('url='+location.href.split('#')[0]);
+            httpRequest.onreadystatechange = function () 
+		   {
+               if (httpRequest.readyState == 4) 
+			   {
+			      if(httpRequest.status==200)
+				  {
+                    var json = httpRequest.responseText;
+				    var ret = JSON.parse(json);
+                    if(ret.code==200)
+                    {
+                            appId = ret.data.appId;
+                            timestamp = ret.data.timestamp;
+                            nonceStr = ret.data.nonceStr;
+                            signature = ret.data.signature;
+                            url = ret.data.url;
+							//设置微信config
+                            wx.config
+                            ({
+                                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                                appId: appId+'', // 必填，公众号的唯一标识
+                                timestamp:timestamp, // 必填，生成签名的时间戳
+                                nonceStr: nonceStr+'', // 必填，生成签名的随机串
+                                signature: signature+'',// 必填，签名
+                                jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表
+                            });
+							document.getElementById("ShareBlock").style.display = "inherit";	
+                            wx.ready(function() 
+                            {
+                                //分享到朋友圈
+                                wx.onMenuShareTimeline({
+                                   title: sharetitle, // 分享标题
+                                   link: shareurl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                   imgUrl : imgUrl, // 分享图标
+                                   success : function(res) {
+                                     if(res.errMsg=='onMenuShareTimeline:ok'){
+                                          Layer.msg('分享成功');
+                                     }
+                                   },
+                                   cancel : function(res) {
+                                      console.log(res);
+                                   }
+                                });
+                                //分享给朋友
+                                wx.onMenuShareAppMessage
+                                ({
+                                   title : sharetitle, // 分享标题
+                                   link : shareurl, // 分享链接
+                                   imgUrl : imgUrl, // 分享图标
+								   desc : sharedesc, 
+                                   success : function(res) {
+                                      if(res.errMsg=='onMenuShareAppMessage:ok'){
+                                         Layer.msg('分享成功');
+                                      }
+									  shareclsoe();
+                                   },
+                                   cancel : function(res) {
+                                     console.log(res);
+                                   }
+                                });
+                            });
+                    }
+				  }else
+				  {
+				     alert("Network error");
+				  }
+               }
+		   }
+		}
+		function shareclsoe()
+		{
+		   document.getElementById("ShareBlock").style.display = "none";
+		}
+		function nshareclose()
+		{
+		   document.getElementById("NShareBlock").style.display = "none";
+		}
+		function OpenPhone()
+		{
+		   document.getElementById("RegistBlock").style.display = "inherit";
+		}
+		var time=60;
+		var timeout;
+		function CheckNum()
+		{
+		    document.getElementById("Registbutton").disabled=true;
+		    var reg =/^0?1[3|4|5|6|7|8][0-9]\d{8}$/;
+	        var httpRequest=new XMLHttpRequest();
+            httpRequest.open('POST', mainurl+'/api/Sms/apisend', true);
+            httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			document.getElementById("RegistPhone").value;
+			if(reg.test(document.getElementById("RegistPhone").value))
+			{
+			   httpRequest.send('mobile='+document.getElementById("RegistPhone").value);
+               httpRequest.onreadystatechange = function () {
+                      if (httpRequest.readyState == 4){ 
+					         if(httpRequest.status == 200) 
+							 {
+                                    var json = httpRequest.responseText;
+				                    var obj = JSON.parse(json);
+									console.log(json);
+									if(obj.code==1)
+									{
+									   Timer();
+									}else
+									{
+									   alert("发送失败，手机号已注册或请稍后再试！");
+									   document.getElementById("Registbutton").disabled=false;
+									}
+					         }else
+							 {
+							           document.getElementById("Registbutton").disabled=false;
+									   alert("Network error");
+							 }
+					  }
+			   }
+			}else
+			{
+			  alert("请输入有效手机号！");
+			  document.getElementById("Registbutton").disabled=false;
+			}
+		}
+		function Timer()
+		{
+		    if(time==0)
+			{
+			   time=60;
+			   document.getElementById("Registbutton").innerHTML="发送验证码";
+			   document.getElementById("Registbutton").disabled=false;
+			}else
+			{
+			  document.getElementById("Registbutton").disabled=true;
+			  document.getElementById("Registbutton").innerHTML=time;
+			  time--;
+			  timeout=setTimeout('Timer()',1000); 
+			}
+		}
+		function Submit()
+		{
+		     var reg =/^0?1[3|4|5|6|7|8][0-9]\d{8}$/;
+			 var regh=/^[\u4E00-\u9FA5]+$/;
+			 var regn=/^[0-9]+.?[0-9]*$/;
+			 if(regh.test(document.getElementById("RegistName").value))
+			 {
+                if(reg.test(document.getElementById("RegistPhone").value))
+			    {
+				    if(regn.test(document.getElementById("RegistCheck").value))
+					{
+					   var token=GetQueryString("token");
+					   var httpRequest=new XMLHttpRequest();
+                       httpRequest.open('POST', mainurl+'/api/Index/bind_mobile', true);
+                       httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+					   httpRequest.send('token='+token+'&username='+document.getElementById("RegistName").value+'&mobile='+document.getElementById("RegistPhone").value+'&captcha='+document.getElementById("RegistCheck").value);
+                       httpRequest.onreadystatechange = function () {
+                              if (httpRequest.readyState == 4) 
+							  {
+							     if(httpRequest.status == 200)
+								 {
+                                    var json = httpRequest.responseText;
+				                    var obj = JSON.parse(json);
+									console.log(json);
+									if(obj.code==1)
+									{
+									   alert("绑定成功！");
+									   closeCheck();
+									}
+									else
+									{
+									   alert("绑定失败，请检查手机号以及验证码是否正确！");
+									}
+								 }else
+								 {
+								    alert("Network error");
+								 }
+							  }
+					   }
+					}else
+					{
+					   alert("请输入有效验证码！");
+					}
+			     }else
+			    {
+			        alert("请输入有效手机号！");
+			    }
+			 }else
+			 {
+			    alert("请输入有效姓名！");
+			 }
+        }
+		function closeCheck()
+		{
+		    document.getElementById("RegistBlock").style.display = "none";
+			checknum="";
+			document.getElementById("RegistCheck").value="";
+			document.getElementById("RegistPhone").value="";
+			document.getElementById("RegistName").value="";
+		}
+		var iphonestr;
+		var checknumstr;
+		var key;
+		document.onkeydown=function(e){
+		     key=e.keyCode;
+		     iphonestr=document.getElementById("RegistPhone").value;
+			 checknumstr=document.getElementById("RegistCheck").value;
+		}
+		function delet(va)
+		{		   
+		   document.onkeyup=function(e){
+		      if(e.keyCode!=key)
+			    return;
+		      if(e.keyCode==8&&document.getElementById(va).selectionStart>0)
+			  {
+			      s=document.getElementById(va).value;
+			      s=s.substring(0,s.length-1)
+				  document.getElementById(va).value=s;
+			  }
+			  if(e.keyCode>=48&&e.keyCode<=57&&va=="RegistPhone")
+			  {
+			      document.getElementById(va).value=iphonestr+(e.keyCode-48);
+			  }
+			  if(e.keyCode>=48&&e.keyCode<=57&&va=="RegistCheck")
+			  {
+			      document.getElementById(va).value=checknumstr+(e.keyCode-48);
+			  }
+		   }
+        }
+    </script>
+  </head>
+  <body onload="CheckUrl()">
+    <div class="keepRatio">
+	    <!--场景页-->
+		<div class="webgl-content" id= "webgg">
+			   <div id="gameContainer"></div>
+		</div>	
+		<!--加载页-->
+		<div id="loadingBlock">
+		       <img id="yun1" alt="yun1"></img>
+			   <img id="yun2"  alt="yun2"></img>
+			   <div id="showpic"></div>
+			   <div id="center"></div>
+			   <img id="hua" alt="hua"></img>
+		       <!-- <div class="Logo" style="display:none">
+			       <img class="logo" src="
+https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/TemplateData/img/Logo.png"></img>
+			    </div>
+			    <div class="Pic" style="display:none">
+			        <img  id="pp" class="p" src=""></img>
+			    </div>-->
+			    <div id="t1">
+				</div>
+			    <div id="t2">
+				</div>
+			    <div id="progressBar">
+				    <div class="loadingtip">加载中，请稍后 ...</div>
+				    <div class="centered">
+					     <img id="emptyBar"  alt="空进度"></img>
+					     <img id="fullBar" alt="进度条"></img>
+						 <img id="fullIndex" alt="进度"></img>
+						 <div style="position:absolute;top:200%; font-size:15px;width:100%; color:white; text">如果网页加载缓慢或异常，请使用无痕网页打开或退出浏览器重新加载！</div>
+				    </div>
+			    </div>
+		</div>	
+		<!--错误提示-->
+		<div id="errorBrowserBlock" style="display:none;">		
+			<div id="errorContent">
+				<div id="errorBrowserText" style="color:white;"></div>
+			</div>
+		</div>
+		<!--微信分享面板-->
+		<div id="ShareBlock" style="display:none;">		
+			<img  class="SharePic" alt="SharePic" src="
+https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/TemplateData/img/share.png"></img>
+			<img  class="ShareClose" alt="ShareClose" src="
+https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/TemplateData/img/shareclose.png" onclick="shareclsoe()"></img>
+		</div>
+		<!--其他分享面板-->
+		<div id="NShareBlock" style="display:none;" >	
+		  <div id="NSharePanel">
+		  <img alt="panel"></img>
+		  <div id="NShareTip">分享文案复制成功</div>
+		  <div id="NShareText"></div>
+		  <textarea id="NShareinput"style="display:none;"></textarea>
+		  <div id="NShareBtn" >
+		  <div id="NShareBtnText">去粘贴分享给好友</div>
+		  </div>
+		  <div id="NShareClose"onclick="nshareclose()"></div>
+		  </div>
+		</div>
+		<!--注册面板-->
+		<div id="RegistBlock" style="display:none;">
+		     <div class="RegistPlane">
+			    <div class="RegistTitle">
+			       请绑定姓名和手机号
+			    </div>
+			    <div class="RegistNamePlane"> 
+			            <input id="RegistName" class="RegistName" placeholder=" 请输入姓名"  onkeydown="delet('RegistName')" />
+			    </div>
+				<div class="RegistPhonePlane"> 
+	                    <input  id="RegistPhone" class="RegistPhone" placeholder=" 请输入手机号" onkeydown="delet('RegistPhone')" onkeyup="value=value.replace(/[^\d]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"/>
+			    </div>
+				<div class="RegistCheckPlane"> 
+	                   <input  id="RegistCheck" class="RegistCheck" placeholder=" 请输入验证码" onkeydown="delet('RegistCheck')" onkeyup="value=value.replace(/[^\d]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"/>
+					   <button class="Registbutton" id="Registbutton" onclick="CheckNum()">发送验证码</button>
+			    </div>
+				<div class="RegistButtonPlane">
+				     <button class="Registbutton1" onclick="Submit()">绑定</button>
+					 <button class="Registbutton2" onclick="closeCheck()">关闭</button>
+				</div>
+			 </div>
+		</div>
+		<!--背景音乐检测-->
+		<div id="AudioBlock" style="display:none;" onclick="touchHandler()"></div>
+	</div>
+	<!--背景音乐-->
+	<audio id="music" src="" loop  ></audio>
+	<!--图片音乐-->
+	<audio id="Picmusic" src="" loop  ></audio>
+	<!--视频-->
+	<div id="VideoBlock" style="display:none;" >
+	   <img class="videoclose" alt="videoclose" src="
+https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/TemplateData/img/close.png" onclick="PicVedioClose()"></img>
+	   <div class="videopanel">
+	  <video id="PicVideo"
+               x5-playsinline="true"           
+               playsinline="true"                 
+               webkit-playsinline="true"      
+               preload="auto"                     
+               loop 
+			   poster="
+https://webvrhuaguan.oss-cn-beijing.aliyuncs.com/Exhaibition/TemplateData/img/sharepanel.png"
+			   style="height:100%;width:100%">  
+            <source src="" type="video/mp4">
+  </video>
+	   </div>
+	</div>
+  </body>
+</html>
