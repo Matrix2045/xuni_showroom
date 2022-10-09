@@ -1,0 +1,8 @@
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: url(../../../img/mobile/shouye_bg@2x.png) no-repeat;
+    background-size: 100% 100%;
+    padding: 0;
+    margin: 0 auto; 
+}

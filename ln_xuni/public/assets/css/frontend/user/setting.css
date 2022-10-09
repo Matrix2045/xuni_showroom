@@ -1,0 +1,133 @@
+.container{
+    background:rgba(242,242,242,1);
+    height: 100vh;
+    padding: 0!important;
+}
+/* 返回上一页 */
+.go_back{
+    width: 100%;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.36rem;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    background-color: #fff;
+}
+.go_back img{
+    position: absolute;
+    left: 0.2rem;
+    top: 0.2rem;
+    /*width: 0.48rem;*/
+    height: 0.48rem;
+}
+/* user_info */
+.user_info{
+    width: 100%;
+}
+.user_photo{
+    width: 100%;
+    height: 1.46rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.3rem;
+    color: #333;
+    border-bottom:0.01rem solid rgba(230,230,230,1);
+    background: #fff;
+    padding: 0 0.3rem;
+}
+.user_photo img{
+    width: 0.96rem;
+    height: 0.96rem;
+    border-radius: 50%;
+}
+.user_name{
+    width: 100%;
+    height: 1rem;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.3rem;
+    font-size: 0.3rem;
+}
+.user_name span{
+    font-size: 0.26rem;
+    color: #999999;
+}
+.user_name img{
+    width: 0.15rem;
+    height: 0.25rem;
+    margin-left: 0.1rem;
+}
+.user_number{
+    width: 100%;
+    height: 1rem;
+    margin-top: 0.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.3rem;
+    background: #fff;
+    color: #999999;
+    border-bottom: 0.01rem solid rgba(230,230,230,1);
+}
+.user_number .iphoe{
+    font-size: 0.3rem;
+    color: #333;
+}
+.changePsd{
+    width:100%;
+    height: 1rem;
+    background: #fff;
+    line-height: 1rem;
+    padding: 0 0.3rem;
+    font-size: 0.3rem;
+    color: #333;
+}
+.outLine{
+    width:100%;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    background: #fff;
+    margin-top: 0.1rem;
+    text-align: center;
+    color: #DC3D27;
+    font-size: 0.36rem;
+}
+.popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background:rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.popup .sure{
+    width:6.9rem;
+    height:1.12rem;
+    background:rgba(242,242,242,1);
+    border-radius:0.16rem;
+    font-size: 0.4rem;
+    color: #DC3D27;
+    text-align: center;
+    line-height: 1.12rem;
+}
+.popup .cancel{
+    width:6.9rem;
+    height:1.12rem;
+    background:rgba(242,242,242,1);
+    border-radius:0.16rem;
+    font-size: 0.4rem;
+    color: #333333;
+    text-align: center;
+    line-height: 1.12rem;
+    margin-top: 0.12rem;
+    margin-bottom: 1rem;
+
+}

@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'Good_url'           => '拼多多商品链接',
+    'Good_name'          => '商品名称',
+    'Short_title'        => '商品短标题',
+    'Shop_copywriting'   => '导购文案',
+    'Circle_copywriting' => '朋友圈文案',
+    'Video_url'          => '产品实拍短片',
+    'Image1'             => '实拍图',
+    'Image2'             => '实拍图',
+    'Image3'             => '实拍图',
+    'Image4'             => '实拍图',
+    'Image5'             => '实拍图',
+    'Image6'             => '实拍图',
+    'Keywords'           => '关键字',
+    'White_img'          => '白底图',
+    'Marketing_img'      => '营销图',
+    'Cate_id'            => '商品分类',
+    'Good_type'          => '商品类型',
+    'Activity_type'      => '活动类型',
+    'Coupon_url'         => '优惠券链接',
+    'Is_notice'          => '是否预告 1是 0否',
+    'Start_time'         => '领券开始时间',
+    'End_time'           => '领券结束时间',
+    'Original_price'     => '原价',
+    'Coupon_price'       => '优惠券面值',
+    'Post_coupon_price'  => '劵后价',
+    'Commission_rate'    => '佣金比例',
+    'Shelf_status'       => '上架状态 0未上架 1已上架 2用户下架 3系统下架',
+    'Approval_status'    => '审核状态 0待审核 1审核通过 2审核失败',
+    'Add_time'           => '添加时间'
+];

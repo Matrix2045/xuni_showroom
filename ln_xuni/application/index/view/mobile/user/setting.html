@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="go_back">
+        <a href="{:url('user/index')}" style="display: block;">
+            <img src="__CDN__/assets/img/navnar_icon_back@2x.png" alt="">
+        </a>
+        <h2>设置</h2>
+    </div>
+    <div class="user_info">
+        <form id="profile-form" method="POST">
+            <div class="user_photo">
+                <p>头像</p>
+                <input type="hidden" name="avatar" id="avatar" value="{:$user->getData('avatar')}" />
+                {if empty($user->getData('avatar'))}
+                    <img src="__CDN__/assets/img/user.jpg" alt="" class="plupload">
+                {else/}
+                    <img src="{:cdnurl($user->getData('avatar'))}" alt="" class="plupload">
+                {/if}
+
+                <button style="position: absolute;top: 12px;left: 312px;width: 48px;height: 48px;opacity: 0;" id="plupload-avatar" class="plupload" data-mimetype="png,jpg,jpeg,gif" data-input-id="avatar"></button>
+            </div>
+        </form>
+        <div class="user_name" data-toggle="editUsername" data-id="{:$user.nickname}">
+            <p>昵称</p>
+            <p><span>{:$user.nickname}</span><img src="__CDN__/assets/img/navnar_icon_more@2x.png" alt=""></p>
+        </div>
+        <div class="user_number">
+            <p class="iphoe">手机号</p>
+            {if $user.mobile}
+                <p>{:$user.mobile}</p>
+            {else/}
+                <a href="{:url('user/bind_mobile')}">
+                    <p>
+                        <span style="color: #2196F3">绑定手机号</span>
+                        <img style="width: 0.15rem;height: 0.25rem;margin-left: 0.1rem;" src="__CDN__/assets/img/navnar_icon_more@2x.png" alt="">
+                    </p>
+                </a>
+            {/if}
+            
+        </div>
+        <a href="{:url('user/apply_hall')}" style="width: 100%;border-bottom: 0.01rem solid rgba(230,230,230,1);">
+            <div class="changePsd">
+                申请开展馆
+                <p style="float: right;">
+                    <img style="width: 0.15rem;height: 0.25rem;margin-left: 0.1rem;" src="__CDN__/assets/img/navnar_icon_more@2x.png" alt="">
+                </p>
+            </div>
+        </a>
+        <a href="{:url('user/changepwd')}" style="width: 100%">
+            <div class="changePsd">
+                修改登录密码
+                <p style="float: right;">
+                    <img style="width: 0.15rem;height: 0.25rem;margin-left: 0.1rem;" src="__CDN__/assets/img/navnar_icon_more@2x.png" alt="">
+                </p>
+            </div>
+        </a>
+        <a class="logout" style="width: 100%">
+            <div class="outLine">
+                退出登录
+            </div>
+        </a>
+        <div class="popup" style="display: none">
+            <div class="cancel">取消</div>
+            <div class="sure">确定退出</div>
+        </div>
+    </div>
+</div>

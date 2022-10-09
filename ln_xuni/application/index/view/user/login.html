@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="title">
+        登录
+    </div>
+    <form name="form" id="login-form" class="form-vertical" method="POST" action="">
+        {:token()}
+        <div class="form_data">
+            <div class="input1">
+                <img src="__CDN__/assets/img/login_icon_phone@2x.png" alt="">
+                <input autocomplete="off" id="mobile" name="mobile" placeholder="请输入手机号" type="text">
+            </div>
+            <div class="input1">
+                <img src="__CDN__/assets/img/login_icon_password@2x.png" alt="">
+                <input autocomplete="off" id="password" name="password" placeholder="请输入密码" type="password">
+            </div>
+        </div>
+        <div class="forgetAndnew">
+            <div class="newUser"><a href="{:url('user/register')}">新用户注册</a> </div>
+            <div class="forget"><a href="{:url('user/forgetpwd')}">忘记密码?</a> </div>
+        </div>
+        <button class="btn_commen btn_login">登录</button>
+    </form>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="go_back">
+        <a href="{:url('user/index')}" style="display: block;">
+            <img src="__CDN__/assets/img/navnar_icon_back@2x.png" alt="">
+        </a>
+        <h2>作品详情</h2>
+    </div>
+    <div class="detail_con">
+        <img src="{$works_info.image}" alt="" class="detail_imgq">
+        <p><span>所属展厅</span>{$works_info.hall_name}</p>
+        <p><span>作品名称</span>{$works_info.name}</p>
+        <p><span>作者</span>{$works_info.author}</p>
+        <p><span>作品种类</span>{$works_info.species}</p>
+        <p><span>作品材质</span>{$works_info.material}</p>
+        <p><span>询价量</span>{$works_info.inquiry}</p>
+    </div>
+	<div class="big_img">
+		<div style="position:relative;">
+		  <img id="targetObj" class="img_a" style="position:relative;transform-origin:center" src="{$works_info.image}" />
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		var $targetObj = $('#targetObj');
+		//初始化设置
+		cat.touchjs.init($targetObj, function (left, top, scale, rotate) {
+			$('#left').text(left);
+			$('#top').text(top);
+			$('#scale').text(scale);
+			$('#rotate').text(rotate);
+			$targetObj.css({
+				left: left,
+				top: top,
+				'transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)',
+				'-webkit-transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)'
+			});
+		});
+		//初始化拖动手势（不需要就注释掉）
+		cat.touchjs.drag($targetObj, function (left, top) {
+			$('#left').text(left);
+			$('#top').text(top);
+		});
+		//初始化缩放手势（不需要就注释掉）
+		cat.touchjs.scale($targetObj, function (scale) {
+			$('#scale').text(scale);
+		});
+		//初始化旋转手势（不需要就注释掉）
+		// cat.touchjs.rotate($targetObj, function (rotate) {
+		// 	$('#rotate').text(rotate);
+		// });
+	});
+	$(function(){
+		$('.detail_imgq').click(function(){
+			$('.big_img').show();
+		})
+		$('.big_img').click(function(){
+			$('.big_img').hide();
+		})
+	})();
+</script>

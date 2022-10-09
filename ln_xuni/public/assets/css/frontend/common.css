@@ -1,0 +1,67 @@
+.container{
+    width: 100%;
+    min-height: 100%;
+    background: url(../../img/shouye_bg_zucehng@2x.png);
+}
+.img_position{
+
+}
+.header_wrap{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    background: #ffffff;
+}
+.header{
+    width: 1200px;
+    line-break: 80px;
+}
+.header_l{
+
+}
+.header_r{
+    width: 343px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid #E04F56;
+    border-radius: 16px;
+    box-sizing: border-box;
+    line-height: 32px;
+    margin-top: 22px;
+    overflow: hidden;
+}
+.header_r img{
+    margin-left: 18px;
+    margin-bottom: 5px;
+}
+.header_r input{
+    width: 180px;
+    margin-bottom: 5px;
+}
+.header_r button{
+    float: right;
+    display: block;
+    width: 68px;
+    height: 32px;
+    background: #E04F56;
+    border-radius: 0px 16px 16px 0px;
+    color: #ffffff;
+    line-break: 32px;
+    text-align: center;
+    border: none;
+}
+/* /footer */
+.footer{
+    height: 70px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #2A1902;
+    padding-top: 20px;
+}
+
+.img_position{
+    margin-bottom: 4px;
+}

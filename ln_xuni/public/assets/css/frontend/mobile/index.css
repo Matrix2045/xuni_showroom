@@ -1,0 +1,202 @@
+
+/* header-search */
+.search_box_wrap{
+    width: 100%;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search_box_wrap input{
+    width: 6.96rem;
+    height: 0.64rem;
+    background: #F6F6F6;
+    border-radius: 4px;
+    text-align: center;
+}
+/* swiper */
+.swiper-container{
+    width: 100%;
+    height: 3rem;
+    margin-top: 0.12rem;
+}
+.swiper-wrapper,.swiper-slide{
+    width:100%;
+    height: 3rem;
+}
+.swiper-slide img{
+    width: 100%;
+    height: 100%;
+}
+/* 精品推荐 */
+.recommend{
+    padding:  0 0.24rem;
+}
+.title_con{
+    font-size:0.3rem;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+    padding: 0.4rem 0;
+    text-align: center;
+}
+.recommend_list{
+    width:100%;
+    height: 3.2rem;
+    white-space:nowrap;
+	overflow: hidden;
+	overflow-x:auto;
+
+}
+.recommend_list .recommend_con{
+    width: 5.2rem;
+    height: 3.2rem;
+    display: inline-block;
+    position: relative;
+}
+.recommend_con .bigImg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.recommend_con .smallImg{
+    width: 0.68rem;
+    height: 0.68rem;
+    position: absolute;
+    top: 1.26rem;
+    left: 2.26rem;
+}
+.recommend_con .boutique{
+    width: 0.52rem;
+    height: 0.34rem;
+    position: absolute;
+    top: 0rem;
+    left: 0.2rem;
+    text-align: center;
+    line-height: 0.34rem;
+    background: url(../../../img/mobile/shouye_pic_jinpin@2x.png) no-repeat;
+    background-size: 100% 100%; 
+}
+.recommend_con .shadow{
+    width: 100%;
+    height: 0.54rem;
+    line-height: 0.54rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: #fff;
+    background:rgba(0,0,0,0.4);
+    border-radius:0 0 0.08rem 0.08rem;
+    font-size: 0.28rem;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.title_con img{
+    width: 0.32rem;
+    margin-bottom: 0.08rem;
+}
+/* 所有展厅 */
+.allExhibition{
+    width: 100%;
+    padding: 0 0.24rem;
+}
+.allExhibition_list{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.allExhibition_con{
+    width: 3.4rem;
+    height: 2.4rem;
+    position: relative;
+    margin-bottom: 0.2rem;
+}
+.allExhibition_con .bigAllimg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.allExhibition_con .shadow_con{
+    width: 100%;
+    height: 0.46rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background:rgba(0,0,0,.4);
+    border-radius:0 0 0.08rem 0.08rem;
+    text-align: center;
+    line-height: 0.46rem;
+    color: #fff;
+    font-size: 0.22rem;
+    font-family: PingFang SC;
+    font-weight: bold;
+}
+.allExhibition_con .smallAllimg{
+    width: 0.68rem;
+    height: 0.68rem;
+    position: absolute;
+    left: 1.36rem;
+    bottom: 0.86rem;
+}
+.share{
+    position: absolute;
+    top: 0.12rem;
+    right: 0.12rem;
+    width: 1.34rem;
+    height: 0.4rem;
+}
+.Mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000000;
+    opacity: 0.8;
+    z-index: 10;
+    display:none;
+}
+
+.login-form{
+    position: fixed;
+    left: 2rem;
+    right: 0;
+    top: 0;
+    /*bottom: 0;*/
+    z-index: 15;
+    display:none;
+}
+.login-form img{
+    width:5.2rem;
+    height:4.1rem;
+}
+.login-form .tiao{
+    position: fixed;
+    left: .3rem;
+    /*right: 0;*/
+    top: .3rem;
+    bottom: 0;
+    z-index: 15;
+    display:block;
+    color:#fff;
+}
+.login-form div{
+    position: fixed;
+    bottom: 1.5rem;
+    width: 100%;
+}
+.login-form .return-but{
+    width: 3.73rem;
+    height: 1rem;
+    z-index: 15;
+    display: block;
+    color: #fff;
+}

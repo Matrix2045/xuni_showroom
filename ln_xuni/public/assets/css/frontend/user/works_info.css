@@ -1,0 +1,60 @@
+/* 返回上一页 */
+.go_back{
+    width: 100%;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-size: 0.36rem;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+}
+.go_back img{
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+    /*width: 0.48rem;*/
+    height: 0.48rem;
+}
+/* 详情内容 */
+.detail_con{
+    width: 100%;
+}
+.detail_con .detail_imgq{
+    width: 100%;
+    height: 4.86rem;
+    margin-bottom: 0.4rem;
+    object-fit: cover;
+}
+.detail_con p{
+    width: 100%;
+    font-size:0.3rem;
+    font-family:PingFang SC;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+}
+.detail_con span{
+    display: inline-block;
+    width: 1.2rem;
+    font-size:0.3rem;
+    font-family:PingFang SC;
+    color:#333333;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+    margin-right: 0.2rem;
+}
+.big_img{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.img_a{
+	width:100%;
+	margin-top: 2rem;
+	min-width: 2rem;
+	min-height: 2rem;
+}

@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+<title>{$title|default=''} – {$site.name}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{if isset($keywords)}
+<meta name="keywords" content="{$keywords}">
+{/if}
+{if isset($description)}
+<meta name="description" content="{$description}">
+{/if}
+
+<link rel="shortcut icon" href="__CDN__/assets/img/favicon.ico" />
+<link href="__CDN__/assets/css/frontend{$Think.config.app_debug?'':'.min'}.css?v={$Think.config.site.version}" rel="stylesheet">
+<link href="__CDN__/assets/css/frontend/common.css?v={$Think.config.site.version}" rel="stylesheet">
+<link href="__CDN__/assets/css/frontend/{:strtolower(request()->controller())}/{:request()->action()}.css?v={$Think.config.site.version}" rel="stylesheet">
+<link rel="stylesheet" href="__CDN__/assets/css/frontend/swiper.min.css">
+<link href="__CDN__/assets/css/frontend/reset.css?v={$Think.config.site.version}" rel="stylesheet">
+
+<script type="text/javascript">
+    var require = {
+        config: {$config|json_encode}
+    };
+</script>
+<script src="__CDN__/assets/js/frontend/jq.js"></script>
+<script src="__CDN__/assets/js/frontend/swiper.min.js"></script>

@@ -1,0 +1,110 @@
+/* banner */
+.banner_wrap{
+    width: 100%;
+    min-width: 1400px;
+    height: 480px;
+    background: #000000;
+}
+.img_position{
+    margin-bottom: 4px;
+}
+/* 精品推荐 */
+.recommend_wrap{
+    width: 100%;
+}
+.recommend{
+    width: 1200px;
+}
+.recommend_title{
+    text-align: center;
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    font-weight: bold;
+    color: #2A1902;
+    margin-top: 40px;
+}
+.recommend_list{
+    margin-top: 30px;
+}
+
+.recommend_item{
+    width: 260px;
+    height: 160px;
+    position: relative;
+    margin-right: 53px;
+    margin-bottom: 10px;
+}
+.recommend_item:nth-child(4n){
+    margin-right: 0;
+}
+.recommend_item .jingpin{
+    position: absolute;
+    top: 0;
+    left: 12px;
+}
+.recommend_item .VR_btn{
+    position: absolute;
+    top: 58px;
+    left: 108px;
+}
+.recommend_item .recommend_item_title{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 27px;
+    line-height: 27px;
+    background: rgba(0, 0, 0,.4);
+    border-radius: 0px 0px 4px 4px;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+}
+/* .所有展厅 */
+.all_wrap{
+    width: 100%;
+}
+.all{
+    width: 1200px;
+}
+.all_list{
+    width: 100%;
+    margin-top: 45px;
+}
+.all_item{
+    width:219px ;
+    height: 154px;
+    position: relative;
+    margin-right: 26px;
+    margin-bottom: 26px;
+}
+.all_item:nth-child(5n){
+    margin-right: 0;
+}
+.all_item .VR_btn_all{
+    position: absolute;
+    top: 55px;
+    left: 87px;
+}
+.all_item .share{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.all_item_title{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 27px;
+    line-height: 27px;
+    background: rgba(0, 0, 0,.4);
+    border-radius: 0px 0px 4px 4px;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+}

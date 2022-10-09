@@ -1,0 +1,85 @@
+.container{
+    padding: 0!important;
+}
+.header{
+    width: 100%;
+    height: 2.58rem;
+    border-radius:  0  0 0.2rem 0.2rem;
+    background:linear-gradient(135deg,rgba(139,197,255,1) 0%,rgba(84,150,216,1) 100%);
+}
+/* gooback */
+.go_back{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 0.88rem;
+    padding: 0 0.24rem;
+}
+.go_back img{
+    /*width: 0.48rem;*/
+    height: 0.48rem;
+}
+/* 用户 */
+.user_info{
+    width: 100%;
+    height: 1.7rem;
+    display: flex;
+    align-items: center;
+    padding:0 0.24rem;
+}
+.user_info img{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+}
+.user_info p{
+    font-size:0.32rem;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    padding-left: 0.2rem;
+}
+/* 浏览记录 */
+.browse{
+    width: 100%;
+    padding:0 0.24rem;
+}
+.title_con{
+    font-size:0.3rem;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+    padding: 0.3rem 0;
+}
+.browse_list{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.browse_con{
+    width: 3.4rem;
+    height: 2.4rem;
+    position: relative;
+    margin-bottom: 0.2rem;
+}
+.browse_con img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.browse_con .shadow{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0.46rem;
+    line-height: 0.46rem;
+    background:rgba(0,0,0,1);
+    border-radius:0 0 0.08rem 0.08rem;
+    color: #fff;
+    opacity: 0.4;
+    font-weight: 200;
+    text-align: center;
+}

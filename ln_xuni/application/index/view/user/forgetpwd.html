@@ -1,0 +1,38 @@
+<div class="container">
+    <!-- 返回上一页 -->
+    <div class="go_back">
+        <a href="javascript:history.go(-1)">
+            <img src="__CDN__/assets/img/navnar_icon_back@2x.png" alt="">
+        </a>
+    </div>
+    <!-- 标体 -->
+    <div class="title">
+        忘记密码
+    </div>
+    <!-- 输入框 -->
+    <form id="resetpwd-form" method="POST">
+        <div class="form_data">
+            <div class="input1">
+                <img src="__CDN__/assets/img/login_icon_phone@2x.png" alt="">
+                <input autocomplete="off" id="mobile" name="mobile" placeholder="请输入手机号" type="text">
+            </div>
+            <div class="input1 ">
+                <img src="__CDN__/assets/img/login_icon_code@2x.png" alt="">
+                <input autocomplete="off" id="captcha" name="captcha" placeholder="请输入验证码" type="text">
+                <span>
+                    <a class="btn-captcha" data-url="{:url('api/sms/send')}" data-type="mobile" data-event="resetpwd" href="javascript:">获取验证码</a>
+                </span>
+            </div>
+            <div class="input1 ">
+                <img src="__CDN__/assets/img/login_icon_password@2x.png" alt="">
+                <input autocomplete="off" id="password" name="password" placeholder="请输入新密码" type="password">
+            </div>
+            <div class="input1 ">
+                <img src="__CDN__/assets/img/login_icon_password@2x.png" alt="">
+                <input autocomplete="off" class="form-control" id="repassword" name="repassword" placeholder="请确认新密码" type="password">
+            </div>
+        </div>
+
+        <button class="btn_commen btn_confirm">确定</button>
+    </form>
+</div>

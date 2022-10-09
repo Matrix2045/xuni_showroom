@@ -1,0 +1,74 @@
+.recommend_title{
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    font-weight: bold;
+    color: #2A1902;
+    margin-top: 40px;
+}
+/* .所有展厅 */
+.all_wrap{
+    width: 100%;
+}
+.all{
+    width: 1200px;
+}
+.all_list{
+    width: 100%;
+    margin-top: 45px;
+}
+.all_item{
+    width:219px ;
+    height: 154px;
+    position: relative;
+    margin-right: 26px;
+    margin-bottom: 26px;
+}
+.all_item:nth-child(5n){
+    margin-right: 0;
+}
+.all_item .VR_btn_all{
+    position: absolute;
+    top: 55px;
+    left: 87px;
+}
+.all_item .share{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.all_item_title{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 27px;
+    line-height: 27px;
+    background: rgba(0, 0, 0,.4);
+    border-radius: 0px 0px 4px 4px;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+}
+/* 热门搜索 */
+.search_wrap{
+    width: 100%;
+}
+.search_hot{
+    width: 1200px;
+}
+.search_hot li{
+    padding:3px 15px;
+    background: #EFEFEF;
+    border-radius: 6px;
+    margin-right: 20px;
+    margin-top: 15px;
+}
+.search_hot li a{
+    font-size: 15px;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #4A3B27;
+}
+

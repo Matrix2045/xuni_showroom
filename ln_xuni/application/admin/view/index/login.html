@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="{$config.language}">
+    <head>
+        {include file="common/meta" /}
+
+        <style type="text/css">
+            body {
+                color:#999;
+                background:url('{$background}');
+                background-size:cover;
+            }
+            a {
+                color:#fff;
+            }
+            .login-panel{margin-top:150px;}
+            .login-screen {
+                max-width:400px;
+                padding:0;
+                margin:15% auto 0 auto;
+
+            }
+            .login-screen .well {
+                border-radius: 3px;
+                /*-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background: rgba(255,255,255, 0.2);*/
+            }
+            .login-screen .copyright {
+                text-align: center;
+            }
+            @media(max-width:767px) {
+                .login-screen {
+                    padding:0 20px;
+                }
+            }
+            .profile-img-card {
+                width: 100px;
+                height: 100px;
+                margin: 10px auto;
+                display: block;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+            }
+            .profile-name-card {
+                    text-align: center;
+                    font-size: 25px;
+                    color: #2c3e50;
+            }
+
+            #login-form {
+                margin-top:20px;
+            }
+            #login-form .input-group {
+                margin-bottom:18px;
+            }
+            .input-group-addon {
+                padding: 8px 12px;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 1;
+                color: #555555;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+            .form-control{
+                height: 34px;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 2.538571;
+                color: #555555;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #ccc;
+                transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="login-wrapper">
+                <div class="login-screen">
+                    <div class="well">
+                        <div class="login-form">
+                            <p id="profile-name" class="profile-name-card">{$site.name|mb_substr=0,5,'utf-8'|mb_strtoupper='utf-8'|htmlentities}管理系统</p>
+                            <form action="" method="post" id="login-form">
+                                <div id="errtips" class="hide"></div>
+                                {:token()}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                                    <input type="text" class="form-control" id="pd-form-username" placeholder="{:__('Username')}" name="username" autocomplete="off" value="" data-rule="{:__('Username')}:required;username" />
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>
+                                    <input type="password" class="form-control" id="pd-form-password" placeholder="{:__('Password')}" name="password" autocomplete="off" value="" data-rule="{:__('Password')}:required;password" />
+                                </div>
+                                {if $Think.config.fastadmin.login_captcha}
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></div>
+                                    <input type="text" name="captcha" class="form-control" placeholder="{:__('Captcha')}" data-rule="{:__('Captcha')}:required;length(4)" />
+                                    <span class="input-group-addon" style="padding:0;border:none;cursor:pointer;">
+                                        <img src="{:rtrim('__PUBLIC__', '/')}/index.php?s=/captcha" width="100" height="30" onclick="this.src = '{:rtrim('__PUBLIC__', '/')}/index.php?s=/captcha&r=' + Math.random();"/>
+                                    </span>
+                                </div>
+                                {/if}
+                                <!-- <div class="form-group">
+                                    <label class="inline" for="keeplogin">
+                                        <input type="checkbox" name="keeplogin" id="keeplogin" value="1" />
+                                        {:__('Keep login')}
+                                    </label>
+                                </div> -->
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">{:__('Sign in')}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {include file="common/script" /}
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!-- header-search -->
+<div class="search_box_wrap">
+    <input type="text" placeholder="输入关键词搜索" name="keyword" value="{$keyword}">
+    <div class="cancel">
+        <a href="{:url('index/index')}">取消</a>
+    </div>
+</div>
+<div class="history">
+    <div class="history_title">
+        <img src="__CDN__/assets/img/mobile/shouye_biaoti_iocn_3@2x.png" alt="">
+        热门搜索
+        <img src="__CDN__/assets/img/mobile/shouye_biaoti_iocn_4@2x.png" alt="">
+    </div>
+    <ul class="record">
+        {foreach $hot_search as $val}
+        <a href="{:url('index/search')}?keyword={$val}">
+            <li>{$val}</li>
+        </a>
+        {/foreach}
+    </ul>
+</div>
+{if condition="$type eq 2"}
+<!-- 搜索结果 -->
+<div class="allExhibition">
+    <div class="history_title">
+        <img src="__CDN__/assets/img/mobile/shouye_biaoti_iocn_3@2x.png" alt="">
+        搜索结果
+        <img src="__CDN__/assets/img/mobile/shouye_biaoti_iocn_4@2x.png" alt="">
+    </div>
+    <div class="allExhibition_list">
+        {if count($list)>0}
+            {foreach $list as $val}
+            <div class="allExhibition_con">
+                <a href="{$url}{$val.hall_id}&sence={$val.sence}" target="_blank">
+                    <img src="{$val.image}" alt="" class="bigAllimg">
+                    <div class="shadow_con">
+                        {$val.name}
+                    </div>
+                    <img src="__CDN__/assets/img/mobile/home_icon_vr@2x.png" alt="" class="smallAllimg">
+                </a>
+            </div>
+            {/foreach}
+        {else/}
+            <img src="__CDN__/assets/img/mobile/wu.png">
+            <span>
+                暂无相关展厅
+            </span>
+        {/if}
+    </div>
+</div>
+{/if}
+<div class="bg_one">
+    <img src="__CDN__/assets/img/mobile/sousuo_bg_diceng_2@2x.png" width="100%" height="100%" alt="">
+</div>
+<div class="bg_two">
+    <img src="__CDN__/assets/img/mobile/sousuo_bg_dingceng@2x.png" width="100%" height="100%" alt="">
+</div>

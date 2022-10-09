@@ -1,0 +1,96 @@
+<div class="header_wrap">
+    <div class="header auto">
+        <div class="header_l fl">
+            <a href="{:url('index/index')}"><img src="__CDN__/assets/img/shouye_pic_biaoti@2x.png" width="156px"  alt=""></a>
+        </div>
+        <div class="header_r fr">
+            <img src="__CDN__/assets/img/shouye_icon_search@2x.png" width="15px" class="img_position" alt="">
+            <input type="text" placeholder="输入关键词搜索" name="keyword">
+            <button class="search cur">搜索</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- banner -->
+<div class="banner_wrap">
+    
+    
+    
+    <!-- Swiper -->
+    <div class="swiper-container banner_wrap">
+        <div class="swiper-wrapper">
+            {foreach $banner as $val}
+            <div class="swiper-slide">
+                <a style="width: 100%;height: 100%;" href="{$val.url}" target="_blank">
+                    <img src="{$val.image}" width="100%" height="100%" alt="">
+                </a>
+            </div>
+            {/foreach}
+        </div>
+    </div>
+</div>
+
+<!-- 精品推荐 -->
+<div class="recommend_wrap">
+    <div class="recommend auto">
+        <div class="recommend_title">
+            <img src="__CDN__/assets/img/shouye_biaoti_iocn_1@2x.png" width="14px" class="img_position" alt="">
+            精品推荐
+            <img src="__CDN__/assets/img/shouye_biaoti_iocn_2@2x.png" width="14px" class="img_position" alt="">
+        </div>
+        <div class="recommend_list">
+            {foreach $recommend as $val}
+            <div class="recommend_item fl">
+                <a href="{$url}{$val.hall_id}&sence={$val.sence}" target="_blank">
+                    <img src="{$val['image']}" width="100%" height="100%" alt="">
+                    <img src="__CDN__/assets/img/shouye_jiaobiao_jingpin@2x.png" width="34px" class="jingpin" alt="">
+                    <img src="__CDN__/assets/img/shouye_iocn_vr@2x.png" width="44px" class="VR_btn" alt="">
+                    <div class="recommend_item_title over">
+                        {$val['name']}
+                    </div>
+                </a>
+            </div>
+            {/foreach}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- 所有展厅 -->
+<div class="all_wrap">
+    <div class="all auto">
+        <div class="recommend_title">
+            <img src="__CDN__/assets/img/shouye_biaoti_iocn_1@2x.png" width="14px" class="img_position" alt="">
+            所有展厅
+            <img src="__CDN__/assets/img/shouye_biaoti_iocn_2@2x.png" width="14px" class="img_position" alt="">
+        </div>
+        <div class="all_list">
+            {foreach $hall as $val}
+            <div class="all_item fl">
+                <a href="{$url}{$val.hall_id}&sence={$val.sence}" target="_blank">
+                    <img src="{$val['image']}" width="100%" height="100%" alt="">
+                    <img src="__CDN__/assets/img/shouye_iocn_vr@2x.png" width="44px" class="VR_btn_all" alt="">
+                </a>
+                <img src="__CDN__/assets/img/shouye_bth_fenxiang@2x.png" width="86px" class="share cur" data-url="{$url}{$val.hall_id}&sence={$val.sence}" data-img="{$val.image}" data-title="{$val['name']}">
+                <a href="{$url}{$val.hall_id}&sence={$val.sence}" target="_blank">
+                    <div class="all_item_title over">
+                        {$val['name']}
+                    </div>
+                </a>
+            </div>
+            {/foreach}
+            <div class="clearfix"></div>
+        </div>
+        <div class="page"></div>
+    </div>
+</div>
+<!-- footer -->
+<div class="footer">
+    <p>{$site.copy} 版权所有 技术支持：<a href="https://www.liuniukeji.com" target="_blank">山东六牛网络科技有限公司</a></p>
+    <p><a href="https://beian.miit.gov.cn" style="color:#555" target="_blank">{$site.beian}</a></p>
+</div>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+       loop:true,
+        autoplay:true,
+    });
+</script>
